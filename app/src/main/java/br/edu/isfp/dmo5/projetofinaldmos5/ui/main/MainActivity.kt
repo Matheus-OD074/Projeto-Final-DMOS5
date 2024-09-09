@@ -66,14 +66,11 @@ class MainActivity : AppCompatActivity() {
     private fun  loginUser(){
         val email = binding.editTextEmail.text.toString()
         val password = binding.editTextPassword.text.toString()
-        val name = viewModel.login(email, password)
-        if( name != ""){
+        //if(viewModel.login(email, password)){
             val mIntent = Intent(this, UsersActivity::class.java)
-            mIntent.putExtra(Constant.KEY_LOGGEDUSER, name)
+            mIntent.putExtra(Constant.KEY_LOGGEDUSER, email)
             startActivity(mIntent)
-        }else{
-            Toast.makeText(this,"Erro ao Logar. Verifique suas credenciais", Toast.LENGTH_SHORT).show()
-        }
+        //}
     }
 
 

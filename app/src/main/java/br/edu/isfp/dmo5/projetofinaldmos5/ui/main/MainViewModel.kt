@@ -9,37 +9,32 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.firestore.toObject
 import com.google.firebase.ktx.Firebase
+import kotlin.math.log
 
 class MainViewModel: ViewModel() {
 
     private val repository = UserRepository()
 
-    fun login(email: String, password: String): String{
-        var loggedName: String = ""
-        var loggedPass: String = ""
+    fun login(email: String, password: String) : Boolean{
+
+        var user: User? = null
+        var logged = false
         val colection = Firebase.firestore.collection("user")
 
-        Log.v("TESTE2", "TESTANDO")
-
-        colection
-            .whereEqualTo("email", email)
+        colection.document(email)
             .get()
-            .addOnCompleteListener {
-                if (it.isSuccessful){
-                    for (document in it.result){
-                        val user = document.toObject(User::class.java)
-                        loggedName = user.name
-                        loggedPass = user.password
+            .addOnSuccessListener {
+                user = it.toObject(User::class.java)
+                Log.v("PASSWORD", user!!.password)
+                if (user != null){
+                    if (user!!.password == password){
+                       logged = true
                     }
+
                 }
             }
-
-        if (loggedPass == password){
-            return loggedName
-        }else{
-
-            return ""
-        }
+        Log.v("SENHA", logged.toString())
+        return logged
     }
 
 

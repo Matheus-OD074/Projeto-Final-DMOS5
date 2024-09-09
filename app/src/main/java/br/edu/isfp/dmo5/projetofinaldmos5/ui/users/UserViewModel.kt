@@ -1,6 +1,5 @@
-package br.edu.isfp.dmo5.projetofinaldmos5.ui.register
+package br.edu.isfp.dmo5.projetofinaldmos5.ui.users
 
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -10,9 +9,11 @@ import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
-class SingupViewModel: ViewModel() {
+class UserViewModel: ViewModel() {
+    private val repository = UserRepository()
 
-    val repository = UserRepository()
+    private val _users = MutableLiveData<List<User>>()
+    val users: LiveData<List<User>> = _users
 
     private val _inserted = MutableLiveData<Boolean>()
     val inserted: LiveData<Boolean> = _inserted
@@ -20,6 +21,9 @@ class SingupViewModel: ViewModel() {
     private val _allRinserted = MutableLiveData<Boolean>()
     val allRinserted: LiveData<Boolean> = _allRinserted
 
+    init {
+        loadUsers()
+    }
 
     fun insert(email: String, password: String, name: String){
 
@@ -42,4 +46,7 @@ class SingupViewModel: ViewModel() {
             }
     }
 
+    private fun loadUsers(){
+        repository.findAll { list -> _users.value = list }
+    }
 }

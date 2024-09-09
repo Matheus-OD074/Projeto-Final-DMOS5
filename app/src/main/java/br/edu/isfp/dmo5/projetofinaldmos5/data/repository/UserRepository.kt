@@ -18,7 +18,7 @@ class UserRepository {
 
     fun findAll(callback: (List<User>) -> Unit){
         database.collection(COLLECTION)
-            .orderBy(ATTR_EMAIL, Query.Direction.ASCENDING)
+            .orderBy(ATTR_NAME, Query.Direction.ASCENDING)
             .addSnapshotListener(){ querySnapshot, exception ->
                 if (exception != null){
                     Log.e(TAG, "Listen fail.")
