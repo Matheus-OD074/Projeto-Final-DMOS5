@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "424802510923",
+    "project_id": "projeto-final-dmos5",
+    "storage_bucket": "projeto-final-dmos5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:424802510923:android:4edc0f590e8de26499c5ce",
+        "android_client_info": {
+          "package_name": "br.edu.isfp.dmo5.projetofinaldmos5"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDLwMjk7_3peGMv6--bUUQK3_ToqsBdPcc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
